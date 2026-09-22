@@ -1,0 +1,85 @@
+# ---------------------------------------------------------------
+# .gitignore para proyecto Unity
+# Proyecto: MachineLearningGame (Cells Catcher)
+# Unity 6000.5.7f1
+# ---------------------------------------------------------------
+
+# Carpetas generadas por Unity (NO subir nunca).
+# Library/ puede pesar varios GB y Unity la regenera sola al abrir el proyecto.
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# Estas rutas tambien aplican si el proyecto queda dentro de una subcarpeta
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Assets que Unity importa automaticamente
+/[Aa]ssets/AssetStoreTools*
+/[Aa]ssets/Plugins/Editor/JetBrains*
+
+# Soluciones y proyectos generados por Unity para el IDE
+ExportedObj/
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.slnx
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Rider / Visual Studio / VS Code
+.vs/
+.vscode/
+.idea/
+/[Aa]ssets/Plugins/Editor/JetBrains*
+
+# Builds de Unity
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# Crash reports
+sysinfo.txt
+
+# Resultados de pruebas
+/[Tt]est[Rr]esults/
+*.pidb.meta
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos .meta de carpetas ignoradas
+/[Ll]ibrary.meta
+/[Tt]emp.meta
+/[Ll]ogs.meta
+/[Uu]ser[Ss]ettings.meta
+
+# Archivos generados por Claude (no forman parte del proyecto Unity)
+/Claude outputs/
+Claude outputs/
+.claude/
+CLAUDE.md

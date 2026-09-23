@@ -723,7 +723,9 @@ GameObject:
   m_Component:
   - component: {fileID: 942889697}
   - component: {fileID: 942889696}
-  - component: {fileID: 942889695}
+  - component: {fileID: 942889700}
+  - component: {fileID: 942889699}
+  - component: {fileID: 942889698}
   - component: {fileID: 942889694}
   - component: {fileID: 942889693}
   - component: {fileID: 942889692}
@@ -783,32 +785,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CellPool
   cellPrefab: {fileID: 4513168225869071269, guid: 910d0a964f13bf34f81e80e83490955b, type: 3}
   prewarmCount: 20
---- !u!114 &942889695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 942889691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d5879f2c7a248940aca3298ac739a84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DummyLearning
-  colors:
-  - {r: 0.85, g: 0.35, b: 0.35, a: 1}
-  - {r: 0.85, g: 0.6, b: 0.3, a: 1}
-  - {r: 0.85, g: 0.85, b: 0.35, a: 1}
-  - {r: 0.4, g: 0.75, b: 0.4, a: 1}
-  - {r: 0.3, g: 0.7, b: 0.65, a: 1}
-  - {r: 0.35, g: 0.5, b: 0.85, a: 1}
-  - {r: 0.6, g: 0.4, b: 0.85, a: 1}
-  - {r: 0.85, g: 0.4, b: 0.65, a: 1}
-  sizes:
-  - 0.5
-  - 0.75
-  - 1
-  - 1.25
 --- !u!114 &942889696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,7 +799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   roundDuration: 10
   totalRounds: 15
-  learning: {fileID: 942889695}
+  learning: {fileID: 942889699}
 --- !u!4 &942889697
 Transform:
   m_ObjectHideFlags: 0
@@ -839,6 +815,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &942889698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942889691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bfae2f8cca993d49ad100333ce7686c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LearningDebugPanel
+  learning: {fileID: 942889699}
+  visible: 1
+  toggleKey: 3
+--- !u!114 &942889699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942889691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa6b3f1a11ed724e8eb499ef735ab19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LearningManager
+  colors:
+  - {r: 0.85, g: 0.35, b: 0.35, a: 1}
+  - {r: 0.85, g: 0.6, b: 0.3, a: 1}
+  - {r: 0.85, g: 0.85, b: 0.35, a: 1}
+  - {r: 0.4, g: 0.75, b: 0.4, a: 1}
+  - {r: 0.3, g: 0.7, b: 0.65, a: 1}
+  - {r: 0.35, g: 0.5, b: 0.85, a: 1}
+  - {r: 0.6, g: 0.4, b: 0.85, a: 1}
+  - {r: 0.85, g: 0.4, b: 0.65, a: 1}
+  sizes:
+  - 3
+  - 4.5
+  - 6
+  - 7.5
+  alpha: 0.2
+  startingEpsilon: 0.9
+  minimumEpsilon: 0.1
+  decayFactor: 0.9
+  useLocalMutation: 1
+  logger: {fileID: 942889700}
+--- !u!114 &942889700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942889691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad0a590813fa169428f7cb196f85010a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SurvivalLogger
+  fileName: supervivencia.csv
+  saveOnGameEnd: 1
 --- !u!1 &1016165625
 GameObject:
   m_ObjectHideFlags: 0

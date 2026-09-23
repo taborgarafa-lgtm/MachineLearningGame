@@ -2,28 +2,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// Detecta los clics del jugador y elimina la celula que este debajo del cursor.
-///
-/// Hay UN SOLO script de input en toda la escena, en lugar de un OnMouseDown
-/// por celula. La diferencia: con OnMouseDown, Unity hace una consulta de
-/// fisica por cada objeto y en cada frame. Aqui se hace una sola consulta,
-/// y unicamente en el frame en que hubo clic.
-/// </summary>
+// Detecta los clics y elimina la celula que este debajo del cursor.
+//
+// Hay un solo script de input en toda la escena en lugar de un OnMouseDown por
+// celula: asi se hace una unica consulta de fisica, y solo en el frame del clic.
 public class CellClicker : MonoBehaviour
 {
     [Header("Configuracion")]
-    [Tooltip("Puntos que suma cada celula eliminada.")]
     public int pointsPerCell = 1;
 
-    [Tooltip("Marca aqui solo la capa Celulas, para que la consulta ignore el resto.")]
+    [Tooltip("Marcar solo la capa Celulas.")]
     public LayerMask cellLayer;
 
     private Camera cam;
 
-    // Reutilizamos siempre la misma lista y el mismo filtro.
-    // La version OverlapPointAll devuelve un array nuevo en cada clic;
-    // esta version escribe sobre la lista que ya tenemos y no reserva memoria.
+    // Lista y filtro reutilizados: esta version de OverlapPoint escribe sobre
+    // ellos en vez de devolver un array nuevo en cada clic.
     private readonly List<Collider2D> hits = new List<Collider2D>();
     private ContactFilter2D filter;
 
@@ -38,8 +32,7 @@ public class CellClicker : MonoBehaviour
 
     private void Update()
     {
-        // El proyecto usa el Input System nuevo, por eso Mouse.current
-        // en lugar del viejo Input.GetMouseButtonDown.
+        // El proyecto usa el Input System nuevo: Mouse.current en lugar de Input.
         if (Mouse.current == null) return;
         if (!Mouse.current.leftButton.wasPressedThisFrame) return;
 
@@ -48,13 +41,10 @@ public class CellClicker : MonoBehaviour
         Vector2 screenPosition = Mouse.current.position.ReadValue();
         Vector2 worldPosition = cam.ScreenToWorldPoint(screenPosition);
 
-        // Una sola consulta de fisica, limitada a la capa de celulas,
-        // y sin reservar memoria nueva.
         int count = Physics2D.OverlapPoint(worldPosition, filter, hits);
         if (count == 0) return;
 
-        // Si hay varias celulas solapadas, debe morir la que se ve ENCIMA,
-        // que es la de mayor orden de dibujo.
+        // Si hay varias solapadas debe morir la que se ve encima.
         Cell topCell = null;
         int topOrder = int.MinValue;
 

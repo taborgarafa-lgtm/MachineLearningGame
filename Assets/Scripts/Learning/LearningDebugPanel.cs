@@ -1,22 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// Panel de debug: muestra en pantalla el valor de cada casilla de las
-/// tablas de aprendizaje, en forma de barras.
-///
-/// POR QUE IMPORTA: es lo que hace que el aprendizaje SE VEA en el video
-/// en vez de tener que explicarlo con palabras. Las barras crecen y decaen
-/// en vivo mientras se juega. Cuenta para el criterio de innovacion.
-///
-/// Esta hecho con OnGUI a proposito: no necesita Canvas, ni prefabs, ni
-/// arrastrar nada. Se aniade el componente y ya funciona. Es un overlay de
-/// depuracion, no UI del juego, asi que no vale la pena montarlo con uGUI.
-/// </summary>
+// Muestra en pantalla el valor de cada casilla de las tablas de aprendizaje
+// en forma de barras, para que el aprendizaje se vea mientras se juega.
+//
+// Hecho con OnGUI a proposito: no necesita Canvas ni prefabs, se anade el
+// componente y funciona. Es un overlay de depuracion, no UI del juego.
 public class LearningDebugPanel : MonoBehaviour
 {
     [Header("Referencias")]
-    [Tooltip("Arrastra aqui el objeto que tiene el LearningManager.")]
     public LearningManager learning;
 
     [Header("Configuracion")]
@@ -47,7 +39,7 @@ public class LearningDebugPanel : MonoBehaviour
         float sizesWidth = learning.QSize.Length * (BarWidth + BarGap);
         float panelWidth = colorsWidth + sizesWidth + 60f;
 
-        // Fondo oscuro semitransparente para que se lea sobre cualquier color.
+        // Fondo oscuro para que se lea sobre cualquier color de escena.
         GUI.color = new Color(0f, 0f, 0f, 0.55f);
         GUI.DrawTexture(new Rect(left - 12f, baseline - MaxBarHeight - 44f,
                                  panelWidth, MaxBarHeight + 62f), Texture2D.whiteTexture);
@@ -57,10 +49,8 @@ public class LearningDebugPanel : MonoBehaviour
                   "APRENDIZAJE    epsilon " + learning.Epsilon.ToString("0.00")
                   + "    (" + toggleKey + " para ocultar)");
 
-        // --- Barras de color ---
         DrawBars(learning.QColor, left, baseline, true);
 
-        // --- Barras de tamanio, a la derecha ---
         float sizesLeft = left + colorsWidth + 36f;
         DrawBars(learning.QSize, sizesLeft, baseline, false);
 
@@ -68,10 +58,7 @@ public class LearningDebugPanel : MonoBehaviour
         GUI.Label(new Rect(sizesLeft, baseline + 16f, 200f, 20f), "tamanios");
     }
 
-    /// <summary>
-    /// Dibuja una barra por casilla. La altura es proporcional al valor Q:
-    /// barra alta = esa opcion ha sobrevivido bien hasta ahora.
-    /// </summary>
+    // Barra alta = esa opcion ha sobrevivido bien hasta ahora.
     private void DrawBars(float[] table, float left, float baseline, bool useColors)
     {
         for (int i = 0; i < table.Length; i++)

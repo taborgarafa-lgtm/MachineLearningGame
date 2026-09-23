@@ -1,13 +1,9 @@
 using TMPro;
 using UnityEngine;
 
-/// <summary>
-/// La informacion que se ve durante la partida: tiempo, ronda y puntaje.
-///
-/// El puntaje se actualiza por evento (solo cuando cambia) y el tiempo en
-/// Update (porque cambia cada frame). No tiene sentido hacer las dos cosas
-/// de la misma manera.
-/// </summary>
+// Informacion en pantalla durante la partida.
+// El puntaje se actualiza por evento porque cambia poco; el tiempo en Update
+// porque cambia cada frame.
 public class HUDController : MonoBehaviour
 {
     [Header("Textos")]
@@ -35,8 +31,7 @@ public class HUDController : MonoBehaviour
     {
         if (timerText == null || GameManager.Instance == null) return;
 
-        // Ceil para que muestre "10" el primer instante y "1" el ultimo
-        // segundo completo, en vez de bajar a 0 antes de tiempo.
+        // Ceil para que muestre 10 al empezar y 1 durante el ultimo segundo.
         int seconds = Mathf.CeilToInt(GameManager.Instance.TimeLeft);
         timerText.text = seconds + "s";
     }

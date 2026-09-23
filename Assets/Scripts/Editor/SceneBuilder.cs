@@ -6,26 +6,17 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
-/// <summary>
-/// HERRAMIENTA DE EDITOR: arma la escena entera con un clic.
-///
-/// Menu:  Cells Catcher > Construir escena
-///
-/// Hace todo el trabajo de arrastrar cosas en el Inspector, que es donde
-/// mas facil es equivocarse: crea la capa, configura la camara, monta el
-/// objeto GameManager con sus cinco componentes ya enlazados, y construye
-/// el Canvas con el HUD y la pantalla final.
-///
-/// Se puede ejecutar varias veces sin problema: si algo ya existe lo
-/// reutiliza en vez de duplicarlo.
-///
-/// Esta en una carpeta llamada Editor, asi que Unity la excluye de la
-/// build final: es una herramienta de desarrollo, no parte del juego.
-///
-/// ANTES DE USARLA hacen falta dos cosas:
-///   1. Window > TextMeshPro > Import TMP Essential Resources
-///   2. El prefab de la celula en Assets/Prefabs/Cell.prefab
-/// </summary>
+// Herramienta de editor: arma la escena entera desde el menu
+// Cells Catcher > Construir escena.
+//
+// Crea la capa, configura la camara, monta el objeto GameManager con sus
+// componentes ya enlazados y construye el Canvas con el HUD y la pantalla
+// final. Se puede ejecutar varias veces: reutiliza lo que ya existe.
+//
+// Esta en una carpeta Editor, asi que Unity la excluye de la build final.
+//
+// Requiere los TMP Essential Resources importados y el prefab en
+// Assets/Prefabs/Cell.prefab.
 public static class SceneBuilder
 {
     private const string PrefabPath = "Assets/Prefabs/Cell.prefab";
@@ -73,7 +64,7 @@ public static class SceneBuilder
     //  Capa
     // ------------------------------------------------------------------
 
-    /// <summary>Crea la capa si no existe y devuelve su numero.</summary>
+    // Crea la capa si no existe y devuelve su numero.
     private static int EnsureLayer(string name)
     {
         int existing = LayerMask.NameToLayer(name);
@@ -119,11 +110,8 @@ public static class SceneBuilder
     //  Camara
     // ------------------------------------------------------------------
 
-    /// <summary>
-    /// El fondo es simplemente el color de la camara. No hace falta ningun
-    /// objeto: un sprite de fondo seria un objeto mas que dibujar cada frame
-    /// para conseguir exactamente lo mismo.
-    /// </summary>
+    // El fondo es el color de la camara. Un sprite de fondo seria un objeto
+    // mas que dibujar cada frame para conseguir exactamente lo mismo.
     private static void ConfigureCamera()
     {
         Camera cam = Camera.main;
@@ -306,10 +294,8 @@ public static class SceneBuilder
     //  EventSystem
     // ------------------------------------------------------------------
 
-    /// <summary>
-    /// Sin EventSystem los botones no responden. Y como el proyecto usa el
-    /// Input System nuevo, hace falta el modulo nuevo, no el Standalone.
-    /// </summary>
+    // Sin EventSystem los botones no responden, y como el proyecto usa el
+    // Input System nuevo hace falta su modulo, no el Standalone.
     private static void EnsureEventSystem()
     {
         EventSystem existing = Object.FindFirstObjectByType<EventSystem>();

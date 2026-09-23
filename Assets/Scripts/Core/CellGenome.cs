@@ -1,20 +1,12 @@
 using System;
 
-/// <summary>
-/// El "genoma" de una celula: describe como se ve.
-///
-/// Guardamos indices (numeros enteros) en lugar del Color y el tamanio
-/// reales porque el sistema de aprendizaje no trabaja con colores libres,
-/// sino con una lista corta de opciones posibles. Aprender sobre 8 opciones
-/// es realista; aprender sobre 16 millones de colores RGB no lo es.
-/// </summary>
+// Describe como se ve una celula. Guardamos indices y no el Color y el
+// tamanio reales porque el aprendizaje trabaja sobre una lista corta de
+// opciones: 8 colores posibles se pueden aprender, 16 millones no.
 [Serializable]
 public struct CellGenome
 {
-    /// <summary>Posicion dentro del array de colores (0 a 7).</summary>
     public int colorIndex;
-
-    /// <summary>Posicion dentro del array de tamanios (0 a 3).</summary>
     public int sizeIndex;
 
     public CellGenome(int colorIndex, int sizeIndex)
